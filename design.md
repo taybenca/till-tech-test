@@ -10,7 +10,7 @@ so we need you to build something that they will understand.
 constructor => items = []
 addItem
 sumAllItems
-calculateTheTaxes
+calculator
 printTheBill
 
 # Tests
@@ -18,5 +18,5 @@ printTheBill
 addItem("Tea") => return "Tea"
 addItem("Americano") => return "Americano"
 listItems = return array with all items
-calculateTheTaxes => 8.63% * totalItems
+calculator => tax = 8.63% * totalItems + items
 printTheBill
