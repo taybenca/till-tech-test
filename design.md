@@ -8,15 +8,15 @@ so we need you to build something that they will understand.
 # Functions
 
 constructor => items = []
-findByName 
+addItem
 sumAllItems
 calculateTheTaxes
 printTheBill
 
 # Tests
 
-findByName("Tea", 2) => return "Tea": 3.65 * 2
-findByName("Americano",1) => return 3.75
-totalItems = sumAllItems => findByName("Tea", 2) + findByName("Americano",1)
+addItem("Tea") => return "Tea"
+addItem("Americano") => return "Americano"
+listItems = return array with all items
 calculateTheTaxes => 8.63% * totalItems
 printTheBill
