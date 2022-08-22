@@ -4,7 +4,6 @@ class Till {
     constructor(){
         this.list = []
         this.menu = hipstercoffee[0]['prices'][0]
-        //console.log(this.menu['Cappucino']) //3.85
         this.total = 0
     }
 
@@ -24,7 +23,7 @@ class Till {
 }
 
 const till = new Till()
-till.addItem('Cappucino')
+till.addItem('Cappuccino')
 till.addItem('Choc Mudcake')
 console.log(till.calculator())
 

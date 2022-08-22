@@ -14,7 +14,7 @@ describe('Till', () => {
     })
     it('cashier adds two items, calculate the total with tax', () =>{
         const till = new Till();
-        till.addItem('Cappucino');
+        till.addItem('Cappuccino');
         till.addItem('Choc Mudcake');
         expect(till.calculator()).toStrictEqual('11.14')
     })
