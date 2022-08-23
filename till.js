@@ -16,16 +16,29 @@ class Till {
     }
     calculator(){
         this.list.forEach(item => this.total += parseFloat(this.menu[item]))
-        const tax = this.total * 0.0864
-        return (this.total + tax).toFixed(2)
+        this.tax = this.total * 0.0864
+        return (this.total + this.tax).toFixed(2)
+    }
+    format(){
+        console.log(hipstercoffee[0]['shopName'])
+        console.log(hipstercoffee[0]['address'])
+        console.log(`Phone: ${hipstercoffee[0]['phone']}`)
+        console.log('-----------')
+        this.list.forEach(item => console.log(`${item}: $${(this.menu[item]).toFixed(2)}`))
+        console.log('-----------')
+        console.log(`Tax: 8.64%`)
+        console.log('-----------')
+        console.log("Total: " + "$" + this.calculator()) 
     }
 
 }
 
 const till = new Till()
-till.addItem('Cappuccino')
+till.addItem('Cafe Latte')
+till.addItem('Cafe Latte')
+till.addItem('Blueberry Muffin')
 till.addItem('Choc Mudcake')
-console.log(till.calculator())
+till.format()
 
 
 module.exports = Till
