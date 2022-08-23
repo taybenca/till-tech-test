@@ -14,11 +14,30 @@ class Till {
     allList(){
         return this.list
     }
-    calculator(){
+    calculateTax(){
         this.list.forEach(item => this.total += parseFloat(this.menu[item]))
         this.tax = this.total * 0.0864
-        return (this.total + this.tax).toFixed(2)
+        return this.totalWithTax = (this.total + this.tax) //34.7648
     }
+
+    checkOver50(){
+        if(this.totalWithTax > 50){
+            console.log('20% Spent over $50 Discount')
+            const discount20 = this.totalWithTax * 0.2
+            this.totalWithTax -= discount20
+        }
+    }
+
+    containMuffin(){
+        this.list.find(item => {
+            if(item.includes('Muffin')){
+                console.log('10% Muffin Discount')
+                const discount10 = this.totalWithTax * 0.1
+                this.totalWithTax -= discount10
+            } 
+        })
+    }
+
     format(){
         console.log(hipstercoffee[0]['shopName'])
         console.log(hipstercoffee[0]['address'])
@@ -28,16 +47,23 @@ class Till {
         console.log('-----------')
         console.log(`Tax: 8.64%`)
         console.log('-----------')
-        console.log("Total: " + "$" + this.calculator()) 
+        this.calculateDiscount()
     }
 
+    calculateDiscount(){
+        this.calculateTax()
+        this.checkOver50()
+        this.containMuffin()
+        console.log(`Total: $${(this.totalWithTax).toFixed(2)}`)  
+        return this.totalWithTax.toFixed(2)      
+    }
 }
 
 const till = new Till()
-till.addItem('Cafe Latte')
-till.addItem('Cafe Latte')
-till.addItem('Blueberry Muffin')
-till.addItem('Choc Mudcake')
+
+till.addItem('Muffin Of The Day')
+till.addItem('Muffin Of The Day')
+till.addItem('Tea')
 till.format()
 
 
