@@ -61,19 +61,23 @@ class Till {
     payment(cash){
         const change = cash - this.totalWithTax
         console.log(`Cash received: $${cash.toFixed(2)}`)
+        if(cash < this.totalWithTax){
+            console.log(`Waiting to receive: $${(this.totalWithTax - cash).toFixed(2)}`)
+        }else{
         console.log(`Change: $${change.toFixed(2)}`)
         return change.toFixed(2)
+        }
     }
 }
 
 
 const till = new Till()
 
-till.addItem('Muffin Of The Day')
+
 till.addItem('Muffin Of The Day')
 till.addItem('Tea')
 till.format()
-till.payment(50)
+till.payment(40)
 
 
 module.exports = Till
