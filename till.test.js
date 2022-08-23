@@ -47,4 +47,12 @@ describe('Till', () => {
         till.addItem('Muffin Of The Day');
         expect(till.calculateDiscount()).toEqual('9.09')
     })
+
+    it('cashier receives the payment and sees the change', ()=>{
+        const till = new Till();
+        till.addItem('Cafe Latte');
+        till.addItem('Muffin Of The Day');
+        expect(till.calculateDiscount()).toEqual('9.09')
+        expect(till.payment(10)).toEqual('0.91')
+    })
 })

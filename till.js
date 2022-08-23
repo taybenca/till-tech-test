@@ -57,7 +57,15 @@ class Till {
         console.log(`Total: $${(this.totalWithTax).toFixed(2)}`)  
         return this.totalWithTax.toFixed(2)      
     }
+
+    payment(cash){
+        const change = cash - this.totalWithTax
+        console.log(`Cash received: $${cash.toFixed(2)}`)
+        console.log(`Change: $${change.toFixed(2)}`)
+        return change.toFixed(2)
+    }
 }
+
 
 const till = new Till()
 
@@ -65,6 +73,7 @@ till.addItem('Muffin Of The Day')
 till.addItem('Muffin Of The Day')
 till.addItem('Tea')
 till.format()
+till.payment(50)
 
 
 module.exports = Till
