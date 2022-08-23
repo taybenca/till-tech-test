@@ -1,23 +1,17 @@
 const hipstercoffee = require('./hipstercoffee.json')
+const Order = require('./order')
 
 class Till {
-    constructor(){
-        this.list = []
+    constructor(list){
+        this.list = list
         this.menu = hipstercoffee[0]['prices'][0]
         this.total = 0
     }
 
-    addItem(item){
-        this.list.push(item)
-    }
-
-    allList(){
-        return this.list
-    }
     calculateTax(){
         this.list.forEach(item => this.total += parseFloat(this.menu[item]))
         this.tax = this.total * 0.0864
-        return this.totalWithTax = (this.total + this.tax) //34.7648
+        return this.totalWithTax = (this.total + this.tax) 
     }
 
     checkOver50(){
@@ -42,6 +36,7 @@ class Till {
         console.log(hipstercoffee[0]['shopName'])
         console.log(hipstercoffee[0]['address'])
         console.log(`Phone: ${hipstercoffee[0]['phone']}`)
+        console.log(`Customer name: ${this.name}`)
         console.log('-----------')
         this.list.forEach(item => console.log(`${item}: $${(this.menu[item]).toFixed(2)}`))
         console.log('-----------')
@@ -71,13 +66,13 @@ class Till {
 }
 
 
-const till = new Till()
+const order = new Order()
+const list = order.allList()
+const till = new Till([list])
+order.addItem('Tea')
 
-
-till.addItem('Muffin Of The Day')
-till.addItem('Tea')
 till.format()
 till.payment(40)
 
-
 module.exports = Till
+
