@@ -16,7 +16,3 @@ class Order {
 }
 
 module.exports = Order;
-
-const order = new Order()
-order.addItem('Tea')
-// console.log(order.allList())

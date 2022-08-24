@@ -22,8 +22,10 @@ describe('Till', () => {
         order.addItem('Choc Mousse');
         order.addItem('Affogato');
         order.addItem('Cafe Latte');
+        till.calculateTax()
         expect(till.calculateDiscount()).toEqual('46.89')
     })
+
     it('customer buys more than $50 and gets 20% discount, and buys a muffin gets 10% muffin discount', ()=>{
         const order = new Order()
         const list = order.allList()
@@ -34,6 +36,7 @@ describe('Till', () => {
         order.addItem('Affogato');
         order.addItem('Cafe Latte');
         order.addItem('Muffin Of The Day');
+        till.calculateTax()
         expect(till.calculateDiscount()).toEqual('45.76')
     })
 
@@ -43,6 +46,7 @@ describe('Till', () => {
         const till = new Till(list);
         order.addItem('Cafe Latte');
         order.addItem('Muffin Of The Day');
+        till.calculateTax()
         expect(till.calculateDiscount()).toEqual('9.09')
     })
 
@@ -52,6 +56,7 @@ describe('Till', () => {
         const till = new Till(list);
         order.addItem('Cafe Latte');
         order.addItem('Muffin Of The Day');
+        till.calculateTax()
         expect(till.calculateDiscount()).toEqual('9.09')
         expect(till.payment(10)).toEqual('0.91')
     })

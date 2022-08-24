@@ -1,11 +1,13 @@
 const hipstercoffee = require('./hipstercoffee.json')
 const Order = require('./order')
+const prompt = require('prompt-sync')();
 
 class Till {
     constructor(list){
         this.list = list
         this.menu = hipstercoffee[0]['prices'][0]
         this.total = 0
+        //console.log(this.list)
     }
 
     calculateTax(){
@@ -33,46 +35,45 @@ class Till {
     }
 
     format(){
-        console.log(hipstercoffee[0]['shopName'])
+        console.log('\n\n' + hipstercoffee[0]['shopName'])
         console.log(hipstercoffee[0]['address'])
         console.log(`Phone: ${hipstercoffee[0]['phone']}`)
-        console.log(`Customer name: ${this.name}`)
-        console.log('-----------')
-        this.list.forEach(item => console.log(`${item}: $${(this.menu[item]).toFixed(2)}`))
-        console.log('-----------')
-        console.log(`Tax: 8.64%`)
-        console.log('-----------')
+        console.log('\n-----------------------')
+        this.list.forEach(item => console.log(`${item}: $${(this.menu[item].toFixed(2))}`))
+        console.log('-----------------------')
+        console.log(`Tax: 8.64% = $${(this.tax).toFixed(2)}`)
+        console.log('-----------------------')
         this.calculateDiscount()
     }
 
     calculateDiscount(){
-        this.calculateTax()
         this.checkOver50()
         this.containMuffin()
+        console.log('-----------------------')
         console.log(`Total: $${(this.totalWithTax).toFixed(2)}`)  
         return this.totalWithTax.toFixed(2)      
     }
 
     payment(cash){
         const change = cash - this.totalWithTax
+        console.log('-----------------------')
         console.log(`Cash received: $${cash.toFixed(2)}`)
         if(cash < this.totalWithTax){
-            console.log(`Waiting to receive: $${(this.totalWithTax - cash).toFixed(2)}`)
+            const difference = this.totalWithTax - cash
+            while(true){
+                cash = prompt(`Waiting to receive: $${(difference).toFixed(2)} ...`)
+                if(cash >= difference){
+                    break
+                }  
+            }
+            console.log(`Change: $${(cash - difference).toFixed(2)}`)
+            return change.toFixed(2)           
         }else{
         console.log(`Change: $${change.toFixed(2)}`)
         return change.toFixed(2)
         }
     }
 }
-
-
-const order = new Order()
-const list = order.allList()
-const till = new Till([list])
-order.addItem('Tea')
-
-till.format()
-till.payment(40)
 
 module.exports = Till
 
